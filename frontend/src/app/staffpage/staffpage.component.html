@@ -1,10 +1,114 @@
+<div class="staff-page">
+  <!-- top bar -->
+  <div class="topbar">
+    <div class="welcome-box">
+      <h2>Hi, {{ userName }} 👋</h2>
+    </div>
+    <div class="profile-pic-box">
+      <img [src]="profilePicUrl" alt="User Pic" class="profile-pic" />
+    </div>  
+    <!-- [src]="profilePicUrl" it should be added before api testing -->
+  </div>
+  <!-- Sidebar Section -->
+  <button (click)="toggleSidebar()" class="toggle-btn">☰</button>
+  <div class="sidebar" [@slideInOut]="sidebarOpen ? 'in' : 'out'">
+    <ul>
+          <button (click)="showSection('balance')"><b>Leave Balance</b></button>
+          <button (click)="showSection('status')"><b>Check Status</b></button>
+          <button (click)="showSection('history')"><b>Leave History</b></button>
+          <button (click)="navigateToApplyLeave()"><b>Apply Leave</b></button>
+         <button (click)="showSection('rules')"><b>Leave Rules</b></button>
+         <hr>
+         <button (click)="logout()" style="color: rgb(213, 54, 54);"><b>Logout</b></button>
+       
+    </ul>
+  </div>
+
+  <!-- Main Content Wrapper -->
+  <div class="main-body" >
+      <!-- Infinite Scroll Holidays -->
+      <div
+        class="holiday-box"
+        [class.sidebar-open]="sidebarOpen"
+        infiniteScroll
+        [infiniteScrollDistance]="1"
+        [infiniteScrollThrottle]="300"
+        (scrolled)="loadMoreHolidays()">
+        <h3>Upcoming Holidays</h3>
+        <div *ngFor="let holiday of holidays" @fadeIn>
+          🎉 <b>{{ holiday.name }}:</b>[{{ holiday.date.iso }}]
+        </div>
+        <div *ngIf="loading">Loading...</div>
+        <button (click)="loadMoreHolidays()" [disabled]="loading">Load More</button>
+    
+      </div>
+      
+      
+       <!-- Sections(sidebar options) -->
+        <div class="dynamic-content">
+      <div *ngIf="visibleSection === 'balance'" class="card">
+        <h3><i>Leave Balance</i></h3>
+        <p><i>Casual Leaves:</i> {{ leaves.casual || 0 }}</p>
+        <p><i>Sick Leaves:</i> {{ leaves.sick || 0 }}</p>
+        <p><i>Earned Leaves:</i> {{ leaves.earned || 0 }}</p>
+        <p><i>Unpaid Leaves: </i>{{ leaves.unpaid || 0 }}</p>
+      </div>
+
+      <div *ngIf="visibleSection === 'status'" class="card">
+        <h3><i>Leave Status</i></h3>
+        <button (click)="fetchLeaveStatus()"><i>Check Status</i></button>
+        <p>{{ leaveStatus }}</p>
+      </div>
+
+      <div *ngIf="visibleSection === 'history'" class="card">
+        <h3><i>Leave History</i></h3>
+        <button (click)="fetchLeaveHistory()">View History</button>
+        <div *ngIf="leaveHistory.length; else noHistory">
+          <div *ngFor="let leave of leaveHistory" class="history-entry">
+            <p><strong>Start:</strong> {{ leave.start_date | date }}</p>
+            <p><strong>End:</strong> {{ leave.end_date | date }}</p>
+            <p><strong>Status:</strong> {{ leave.status }}</p>
+          </div>
+        </div>
+        <ng-template #noHistory><p><i>No history available.</i></p></ng-template>
+      </div>
+
+      <div *ngIf="visibleSection === 'rules'" class="card">
+        <h3><i>Leave Rules</i></h3>
+        <p>✔ Max 12 Casual Leaves</p>
+        <p>✔ Medical certificate needed for more than 2 Sick Leaves</p>
+        <p>✔ Earned Leaves encashable annually</p>
+      </div>
+      </div>
+      <!-- Calendar -->
+      <div class="calendar-box">
+        
+        <div class="calendar-date-display">
+
+          📅 <strong>{{ today | date: 'fullDate' }}</strong>
+          <app-calender></app-calender>
+          
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="staff-footer">
+      S+R <br />
+      &copy; 2024 Schopper Riegler - All Rights Reserved.
+    </footer>
+  </div>
+
+
+<!--previous version with all things on main page
+   <div class="bg-container"></div>
 <div class="staff-container">
     <div class="logout">
       <button class="logout-btn" (click)="logout()">Logout</button>
     </div>
   
     <header class="staff-header"><strong>Welcome {{ userName }}</strong></header>
-  
+   
     <div class="staff-grid">
       <div>
         <div class="card check-status">
@@ -46,10 +150,4 @@
         <button (click)="navigateToApplyLeave()">Apply Leave</button>
       </div>
     </div>
-  
-    <footer class="staff-footer">
-      S+R <br />
-      &copy; 2024 Schopper Riegler - All Rights Reserved.
-    </footer>
-  </div>
-  
+   -->

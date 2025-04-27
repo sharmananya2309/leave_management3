@@ -1,9 +1,134 @@
-<div class="hod-container">
-    <div class="logout">
-      <button class="logout-btn" (click)="handleLogout()">Logout</button>
+<div class="staff-page">
+<!-- <div class="hod-container"> -->
+  <div class="topbar">
+    
+    <div class="welcome-box">
+      <h2>Welcome, {{ hodName }}</h2>
     </div>
-  
-    <div class="navbar">
+    <div class="profile-pic-box">
+      <img [src]="profilePicUrl" alt="User Pic" class="profile-pic" />
+    </div>  
+  </div>
+  <div class="main-body">
+    <!-- sidebar buttons -->
+    <button class="toggle-btn" (click)="toggleSidebar()">☰</button>
+    <div class="sidebar" [@slideSidebar]="sidebarOpen ? 'open' : 'closed'">
+      <ul>
+      <button (click)="selectSection('staff')" >
+      <b>Staff Members</b></button>
+      <button (click)="selectSection('requests')" >
+        <b>Leave Requests</b></button>
+        <hr>
+     <button (click)="handleLogout()" style="color: rgb(213, 54, 54);"><b>Logout</b></button>
+    </ul>
+  </div>
+  <div class="main-body" >
+    <!-- Infinite Scroll Holidays -->
+    <div
+      class="holiday-box"
+      [class.sidebar-open]="sidebarOpen"
+      infiniteScroll
+      [infiniteScrollDistance]="1"
+      [infiniteScrollThrottle]="300"
+      (scrolled)="loadMoreHolidays()">
+      <h3>Upcoming Holidays</h3>
+      <div *ngFor="let holiday of holidays" @fadeIn>
+        🎉 <b>{{ holiday.name }}:</b>[{{ holiday.date.iso }}]
+      </div>
+      <div *ngIf="loading">Loading...</div>
+       <!-- Load More Button -->
+       <button (click)="loadMoreHolidays()" [disabled]="loading">Load More</button>
+    </div>
+
+    <div class="dynamic-content">
+      <div *ngIf="selectedSection === 'staff'" class="card">
+        <h3>Staff Members</h3>
+        <ul class="staff-list">
+          <li *ngFor="let staff of staffList">
+            <div class="staff-info">
+              <img *ngIf="staff.profile_image" [src]="'http://localhost:5000/' + staff.profile_image" alt="Staff Profile Picture" class="profile-pic1" />
+              <div class="staff-details">
+                <span class="staff-name">{{ staff.name }}</span>
+                <span class="staff-role">Role: {{ staff.role }}</span>
+                <span class="staff-email">Email: {{ staff.email }}</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div *ngIf="selectedSection === 'requests'" class="card">
+        <h3>{{ activeTabTitle }}</h3>
+        <div class="tabs">
+          <button (click)="changeTab('pending')" [class.active]="activeTab === 'pending'">
+            Pending
+          </button>
+          <button (click)="changeTab('Approved/Rejected')" [class.active]="activeTab === 'Approved/Rejected'">
+            Approved/Rejected
+          </button>
+          <button (click)="changeTab('history')" [class.active]="activeTab === 'history'">
+            History
+          </button>
+        </div>
+        <ul class="leave-requests-list">
+          <li *ngFor="let request of leaveRequests" (click)="handleReqClick(request)">
+            <div class="leave-info">
+              <span>{{ request.name }} - {{ request.leave_type }}</span>
+              <span>{{ request.start_date | date: 'shortDate'  }} to {{ request.end_date | date: 'shortDate'  }}</span>
+              <span>{{ request.reason }}</span>
+              <span [ngClass]="{
+                  approved: request.status === 'approved',
+                  rejected: request.status === 'rejected',
+                  pending: request.status === 'pending'
+                }">
+                {{ request.status }}
+              </span>
+              <div *ngIf="request.status === 'pending'" class="action-btns">
+                <button (click)="handleLeaveAction(request, 'Approved')">Accept</button>
+                <button (click)="handleLeaveAction(request, 'Rejected')">Reject</button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div *ngIf="selectedRequest" class="holiday-box sidebar-open">
+      <div class="card">
+        <h3>Leave Request Details</h3>
+        <p><strong>Leave Type:</strong> {{ selectedRequest.leave_type }}</p>
+        <p><strong>Start Date:</strong> {{ selectedRequest.start_date }}</p>
+        <p><strong>End Date:</strong> {{ selectedRequest.end_date }}</p>
+        <p><strong>Reason:</strong> {{ selectedRequest.reason }}</p>
+        <div class="modal-actions">
+          <button (click)="handleLeaveAction(selectedRequest, 'approved')">
+            Approve
+          </button>
+          <button (click)="handleLeaveAction(selectedRequest, 'rejected')">
+            Reject
+          </button>
+          <button (click)="closeModel()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    <!-- Calendar -->
+    <div class="calendar-box">
+      <div class="calendar-date-display">
+        📅 <strong>{{ today | date : "fullDate" }}</strong>
+        <app-calender></app-calender>
+      </div>
+    </div>
+  </div>
+
+  <footer class="staff-footer">
+    S+R <br />
+    &copy; 2024 Schopper Riegler - All Rights Reserved.
+  </footer>
+</div>
+<!-- </div> -->
+
+<!-- <div class="navbar">
       <header class="staff-header">HOD Dashboard</header>
       <h2>Welcome, {{ hodName || 'HOD' }}</h2>
     </div>
@@ -45,4 +170,4 @@
       © 2024 Schopper Riegler - All Rights Reserved.
     </footer>
   </div>
-  
+   -->

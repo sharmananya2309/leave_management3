@@ -11,6 +11,15 @@ export class LoginpageComponent {
   email: string = '';
   password: string = '';
   showPassword: boolean = false; // ✅ Define showPassword
+  
+  saveUserToLocalStorage(user: any, token: string) {
+    localStorage.setItem('user_id', user.id);
+    localStorage.setItem('name', user.name);
+    localStorage.setItem('role', user.role);
+    localStorage.setItem('token', token);
+    localStorage.setItem('department', user.department);
+    localStorage.setItem('user', JSON.stringify(user));
+  }
 
   handleLogin(event: Event) {
     event.preventDefault();
@@ -28,16 +37,14 @@ export class LoginpageComponent {
     })
     .then(data => {
       console.log("logged in user", data);
-      localStorage.setItem("user_id", data.user.id);
-      localStorage.setItem("name", data.user.name);
-      localStorage.setItem("role", data.user.role);
-      localStorage.setItem("token", data.token);
-
-      if (data.user.role === "hod") {
-        window.location.href = '/hod';
-      } else {
-        window.location.href = "/staff";
-      }
+      this.saveUserToLocalStorage(data.user, data.token);
+      setTimeout(() => {   
+        if (data.user.role === "hod") {
+          window.location.href = '/hod';
+        } else {
+          window.location.href = "/staff";
+        }
+      }, 100);  
     })
     .catch(error => alert(error.message));
   }

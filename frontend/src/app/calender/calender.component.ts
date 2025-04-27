@@ -5,6 +5,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+ 
+
+
 @Component({
   selector: 'app-calender',
   standalone: true,
@@ -12,12 +15,14 @@ import { CommonModule } from '@angular/common';
     MatFormFieldModule,
     MatInputModule,
     MatNativeDateModule,
-    FormsModule,CommonModule],
+    FormsModule,CommonModule,
+  ],
   templateUrl: './calender.component.html',
-  styleUrl: './calender.component.css'
+  styleUrls: ['./calender.component.css']
 })
 export class CalenderComponent {
   selectedDate: Date = new Date();
+ 
 }
 
 

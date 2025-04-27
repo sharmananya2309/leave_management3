@@ -1,0 +1,14 @@
+# Node.js
+node_modules/
+.env
+
+# Angular
+frontend/dist/
+frontend/node_modules/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db

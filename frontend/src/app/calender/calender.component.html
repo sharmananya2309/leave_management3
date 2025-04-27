@@ -1,13 +1,13 @@
 <div class="calendar-container">
-    <h3><i>Calendar</i></h3>
-  
-    <mat-form-field appearance="fill">
-      <mat-label>Select a date</mat-label>
-      <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-  
-    <p *ngIf="selectedDate">Selected date: {{ selectedDate | date:'fullDate' }}</p>
+  <mat-form-field appearance="fill" class="custom-datepicker">
+    <mat-label>Select a date</mat-label>
+    <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <div class="selected-date">
+    Selected date: {{ selectedDate | date:'fullDate' }}
   </div>
-  
+</div>
+
