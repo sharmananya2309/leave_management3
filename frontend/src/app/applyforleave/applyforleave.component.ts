@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './applyforleave.component.html',
-  styleUrl: './applyforleave.component.css'
+  styleUrl: './applyforleave.component.scss'
 })
 export class ApplyforleaveComponent {
   leaveType = '';

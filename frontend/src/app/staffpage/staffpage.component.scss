@@ -1,0 +1,206 @@
+$primary-color: #004aad;
+$white: #ffffff;
+
+.staff-page {
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  .topbar {
+    background-color: $primary-color;
+    color: white;
+    padding: 5px 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .welcome-box {
+      h2 {
+        margin-top: 0;
+        margin-left: 30px;
+        padding-top: 20px;
+      }
+    }
+
+    .profile-pic {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid white;
+    }
+  }
+
+  .toggle-btn {
+    position: absolute;
+    top: 30px;
+    left: 15px;
+    background-color: $primary-color;
+    color: white;
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .sidebar {
+    position: absolute;
+    top: 62px;
+    left: 0;
+    width: 200px;
+    height: calc(100% - 60px);
+    background-color: $primary-color;
+    overflow-y: auto;
+    z-index: 10;
+    padding: 10px 0 0 3px;
+
+    button {
+      background-color: $primary-color;
+      color: white;
+      border: none;
+      font-size: 14px;
+      padding-left: 0;
+      padding-bottom: 10px;
+      cursor: pointer;
+    }
+  }
+
+  .main-body {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    flex: 1;
+    gap: 20px;
+
+    .holiday-box {
+      flex: 1;
+      max-width: 350px;
+      overflow-y: scroll;
+      height: 300px;
+      z-index: 1;
+      background: white;
+      padding: 20px;
+      border-radius: 1.5rem;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      border: 1px solid $white;
+      scroll-behavior: smooth;
+
+      h3 {
+        text-align: center;
+        margin: 0;
+      }
+    }
+
+    .dynamic-content {
+      flex: 2;
+      max-width: 650px;
+      height: 50vh;
+      padding-right: 15px;
+      margin-left: 20px;
+      border-radius: 1rem;
+      border: 1px solid $white;
+    }
+
+    .calendar-box {
+      flex: 1;
+      max-width: 250px;
+      margin-left: auto;
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  .calendar-date-display {
+    background-color: #f6f0f0;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .staff-footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #eee;
+    margin-top: auto;
+  }
+
+  .card {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+
+    h3 {
+      text-align: center;
+      margin: 0;
+    }
+  }
+
+  // 📱 Mobile responsiveness
+  @media (max-width: 768px) {
+    .topbar {
+      flex-direction: row;
+      align-items: center;
+      padding: 10px 10px 20px;
+      gap: 10px;
+    }
+
+    .toggle-btn {
+      position: static;
+      font-size: 22px;
+      margin-right: 10px;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      width: 180px;
+      height: calc(100% - 60px);
+      background-color: $primary-color;
+      z-index: 999;
+      padding: 10px;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease-in-out;
+
+      &.active {
+        transform: translateX(0);
+      }
+
+      button {
+        font-size: 12px;
+      }
+    }
+
+    .main-body {
+      flex-direction: column;
+      padding: 10px;
+      gap: 15px;
+
+      .dynamic-content {
+        order: -1;
+        max-width: 100%;
+        margin-left: 0;
+        padding-right: 0;
+        height: auto;
+      }
+
+      .holiday-box,
+      .calendar-box {
+        max-width: 100%;
+        width: 100%;
+      }
+    }
+
+    .profile-pic {
+      width: 60px;
+      height: 60px;
+    }
+
+    .welcome-box h2 {
+      font-size: 1.2rem;
+      margin-left: 0;
+    }
+  }
+}

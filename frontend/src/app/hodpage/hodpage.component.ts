@@ -10,7 +10,7 @@ import { CalenderComponent } from '../calender/calender.component';
   standalone:true,
   imports: [CommonModule,InfiniteScrollDirective,CalenderComponent],
   templateUrl: './hodpage.component.html',
-  styleUrl: './hodpage.component.css',
+  styleUrl: './hodpage.component.scss',
   animations: [
     trigger('slideSidebar', [
       state('open', style({ transform: 'translateX(-100%)' })),

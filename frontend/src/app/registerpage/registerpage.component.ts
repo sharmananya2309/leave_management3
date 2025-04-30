@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
   standalone:true,
   imports: [CommonModule,FormsModule],
   templateUrl: './registerpage.component.html',
-  styleUrl: './registerpage.component.css'
+  styleUrl: './registerpage.component.scss'
 })
 export class RegisterpageComponent {
   name = '';

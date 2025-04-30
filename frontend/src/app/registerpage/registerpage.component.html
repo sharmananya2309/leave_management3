@@ -1,75 +1,75 @@
-<!-- <div class="background-blur"></div> -->
+<!-- Background Section -->
 <div class="top-section"></div>
 
+<!-- Main Register Section -->
 <div class="register-page">
-    <div class="register-form-wrapper">
-  <form (submit)="handleRegister($event)" class="register-form">
+  <div class="register-form-wrapper">
+    <form (submit)="handleRegister($event)" class="register-form">
 
-    <div class="register-heading">Register</div>
+      <div class="register-heading">Register</div>
 
-    <div class="input-grp">
-      <label class="labels" >Full Name</label>
-      <input type="text" [(ngModel)]="name" name="name" placeholder="Enter Your Full Name" required />
-    </div>
+      <div class="input-grp">
+        <label>Full Name</label>
+        <input type="text" [(ngModel)]="name" name="name" placeholder="Enter Your Full Name" required />
+      </div>
 
-    <div class="input-grp">
-      <label class="labels">Username</label>
-      <input type="text" [(ngModel)]="username" name="username" placeholder="Enter Your Username" required />
-    </div>
+      <div class="input-grp">
+        <label>Username</label>
+        <input type="text" [(ngModel)]="username" name="username" placeholder="Enter Your Username" required />
+      </div>
 
-    <div class="input-grp">
-      <label class="labels">Email</label>
-      <input type="email" [(ngModel)]="email" name="email" placeholder="Enter Your Email ID" required />
-    </div>
+      <div class="input-grp">
+        <label>Email</label>
+        <input type="email" [(ngModel)]="email" name="email" placeholder="Enter Your Email ID" required />
+      </div>
 
-    <div class="input-grp">
-      <label class="labels">Contact Number</label>
-      <input type="text" [(ngModel)]="contact" name="contact" placeholder="Enter Your Contact Number" required />
-    </div>
+      <div class="input-grp">
+        <label>Contact Number</label>
+        <input type="text" [(ngModel)]="contact" name="contact" placeholder="Enter Your Contact Number" required />
+      </div>
 
-    <div class="input-grp">
-        <label class="labels">Register As:</label>
+      <div class="input-grp">
+        <label>Register As:</label>
         <select [(ngModel)]="role" name="role" required>
-            <option value="">--Select--</option>
-            <option value="hod">HOD</option>
-            <option value="staff">STAFF</option>
-          </select>
-    </div>
-   
-    <div class="input-grp">
-      <label class="labels">Gender</label>
-      <select [(ngModel)]="gender" name="gender" required>
-        <option value="">--Select--</option>
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-      </select>
-    </div>
+          <option value="">--Select--</option>
+          <option value="hod">HOD</option>
+          <option value="staff">STAFF</option>
+        </select>
+      </div>
 
-    <div class="input-grp">
-      <label class="labels">Department</label>
-      <select [(ngModel)]="department" name="department" required>
-        <option value="">Select Your Department</option>
-        <option *ngFor="let dept of departments" [value]="dept">
-          {{ dept }}
-        </option>
-      </select>
-    </div>
+      <div class="input-grp">
+        <label>Gender</label>
+        <select [(ngModel)]="gender" name="gender" required>
+          <option value="">--Select--</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
 
-    <div class="input-grp">
-      <label class="labels">Password</label>
-      <input type="password" [(ngModel)]="password" name="password" placeholder="#sbhhhd@1344" required />
-    </div>
+      <div class="input-grp">
+        <label>Department</label>
+        <select [(ngModel)]="department" name="department" required>
+          <option value="">Select Your Department</option>
+          <option *ngFor="let dept of departments" [value]="dept">{{ dept }}</option>
+        </select>
+      </div>
 
-    <div class="input-grp">
-      <label class="labels">Profile Image (optional)</label>
-      <input type="file" (change)="onFileChange($event)" />
-    </div>
+      <div class="input-grp">
+        <label>Password</label>
+        <input type="password" [(ngModel)]="password" name="password" placeholder="Enter Password" required />
+      </div>
 
-    <button type="submit" class="register-btn">Register</button>
-  </form>
-</div>
+      <div class="input-grp">
+        <label>Profile Image (optional)</label>
+        <input type="file" (change)="onFileChange($event)" />
+      </div>
+
+      <button type="submit" class="register-btn">Register</button>
+    </form>
+  </div>
 </div>
 
+<!-- Footer -->
 <footer class="footer">
   <p>S + R</p>
   <p>Copyright © 2024 Schopper Riegler - All Rights Reserved.</p>

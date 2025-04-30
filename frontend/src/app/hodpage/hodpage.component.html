@@ -1,7 +1,7 @@
 <div class="staff-page">
 <!-- <div class="hod-container"> -->
   <div class="topbar">
-    
+    <button class="toggle-btn" (click)="toggleSidebar()">☰</button>
     <div class="welcome-box">
       <h2>Welcome, {{ hodName }}</h2>
     </div>
@@ -11,7 +11,7 @@
   </div>
   <div class="main-body">
     <!-- sidebar buttons -->
-    <button class="toggle-btn" (click)="toggleSidebar()">☰</button>
+    
     <div class="sidebar" [@slideSidebar]="sidebarOpen ? 'open' : 'closed'">
       <ul>
       <button (click)="selectSection('staff')" >

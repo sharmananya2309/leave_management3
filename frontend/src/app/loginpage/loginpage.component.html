@@ -1,18 +1,38 @@
 <div class="top-section"></div>
+
 <div class="login-page">
   <form (submit)="handleLogin($event)" class="login-form">
+    
+    <div class="login-heading">Login</div>
+
     <div class="input-grp">
-      <div class="login-heading">Login</div>
-      <label>Email</label>
-      <input type="text" placeholder="johndoe123@gmail.com" [(ngModel)]="email" name="email" required>
+      <label for="email">Email</label>
+      <input
+        type="text"
+        id="email"
+        name="email"
+        placeholder="johndoe123@gmail.com"
+        [(ngModel)]="email"
+        required
+      />
     </div>
 
     <div class="input-grp">
-      <label>Password</label>
-      <div style="position: relative; display: inline-block;">
-        <input [type]="showPassword ? 'text' : 'password'" placeholder="password" [(ngModel)]="password" name="password" required>
-        <button type="button" (click)="showPassword = !showPassword"
-          style="position: absolute; right: 10px; background: none; border: none; cursor: pointer;">
+      <label for="password">Password</label>
+      <div style="position: relative; display: inline-block; width: 100%;">
+        <input
+          [type]="showPassword ? 'text' : 'password'"
+          id="password"
+          name="password"
+          placeholder="Enter your password"
+          [(ngModel)]="password"
+          required
+        />
+        <button
+          type="button"
+          (click)="showPassword = !showPassword"
+          aria-label="Toggle password visibility"
+        >
           {{ showPassword ? "👁️" : "🙈" }}
         </button>
       </div>

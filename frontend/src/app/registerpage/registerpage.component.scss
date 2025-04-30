@@ -1,0 +1,141 @@
+$primary-color: #004aad;
+$hover-color: #01367c;
+$text-color: #003366;
+$form-bg: rgba(255, 255, 255, 0.95);
+$page-bg: rgba(255, 255, 255, 0.7);
+$blur-img: "login-page-pic.png";
+
+// Global styles
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+// Background image section
+.top-section {
+  width: 100%;
+  height: 60vh;
+  background: url(#{$blur-img}) no-repeat center center / cover;
+  filter: blur(6px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+// Page wrapper
+.register-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 15px;
+  min-height: 100vh;
+  background-color: $page-bg;
+
+  .register-form-wrapper {
+    width: 100%;
+    max-width: 400px;
+    background-color: $form-bg;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+
+    // Optional custom scrollbar
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .register-heading {
+      background-color: #fff;
+      color: $text-color;
+      text-align: center;
+      padding: 15px 0;
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      border-bottom: 2px solid $text-color;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+    }
+
+    .input-grp {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1.2rem;
+
+      label {
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 5px;
+        text-align: left;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+      }
+
+      input,
+      select {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 15px;
+        font-size: 16px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    }
+
+    .register-btn {
+      width: 100%;
+      padding: 10px;
+      background-color: $primary-color;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.5s ease;
+
+      &:hover {
+        background-color: $hover-color;
+      }
+    }
+  }
+}
+
+// Footer
+footer {
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  background-color: transparent;
+  position: static;
+  margin-top: 20px;
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .register-page {
+    .register-form-wrapper {
+      padding: 20px;
+
+      .register-heading {
+        font-size: 20px;
+      }
+
+      .input-grp {
+        input,
+        select {
+          font-size: 14px;
+          padding: 8px;
+        }
+      }
+
+      .register-btn {
+        font-size: 15px;
+      }
+    }
+  }
+}

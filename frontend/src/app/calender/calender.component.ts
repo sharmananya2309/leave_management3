@@ -18,7 +18,7 @@ import { CommonModule } from '@angular/common';
     FormsModule,CommonModule,
   ],
   templateUrl: './calender.component.html',
-  styleUrls: ['./calender.component.css']
+  styleUrls: ['./calender.component.scss']
 })
 export class CalenderComponent {
   selectedDate: Date = new Date();

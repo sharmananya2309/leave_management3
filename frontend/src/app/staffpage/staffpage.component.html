@@ -1,16 +1,17 @@
 <div class="staff-page">
   <!-- top bar -->
   <div class="topbar">
+    <button (click)="toggleSidebar()" class="toggle-btn">☰</button>
     <div class="welcome-box">
       <h2>Hi, {{ userName }} 👋</h2>
     </div>
     <div class="profile-pic-box">
       <img [src]="profilePicUrl" alt="User Pic" class="profile-pic" />
     </div>  
-    <!-- [src]="profilePicUrl" it should be added before api testing -->
+
   </div>
   <!-- Sidebar Section -->
-  <button (click)="toggleSidebar()" class="toggle-btn">☰</button>
+  
   <div class="sidebar" [@slideInOut]="sidebarOpen ? 'in' : 'out'">
     <ul>
           <button (click)="showSection('balance')"><b>Leave Balance</b></button>
@@ -35,8 +36,8 @@
         [infiniteScrollThrottle]="300"
         (scrolled)="loadMoreHolidays()">
         <h3>Upcoming Holidays</h3>
-        <div *ngFor="let holiday of holidays" @fadeIn>
-          🎉 <b>{{ holiday.name }}:</b>[{{ holiday.date.iso }}]
+        <div *ngFor="let holiday of holidays" class="holidays" @fadeIn>
+          🎉 <b>{{ holiday.name }}:</b>[{{ holiday.date.iso}}]
         </div>
         <div *ngIf="loading">Loading...</div>
         <button (click)="loadMoreHolidays()" [disabled]="loading">Load More</button>

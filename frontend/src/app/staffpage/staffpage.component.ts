@@ -11,7 +11,7 @@ import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
   standalone: true,
   imports: [CommonModule, FormsModule, InfiniteScrollDirective,CalenderComponent],
   templateUrl: './staffpage.component.html',
-  styleUrls: ['./staffpage.component.css'],
+  styleUrls: ['./staffpage.component.scss'],
   animations:[
     trigger('slideInOut',[
       state('in',style({transform:'translate(-100%)'})),
